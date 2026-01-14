@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti 💖</title>
+
+<style>
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1fb6ff, #001f54);
+}
+
+/* ================= ESTRELLAS FIJAS ================= */
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: blink 3s infinite alternate;
+}
+
+@keyframes blink {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+/* ================= SOBRE ================= */
+.envelope {
+    position: absolute;
+    width: 340px;
+    height: 220px;
+    background: #ff85b3;
+    border-radius: 15px;
+    cursor: pointer;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ff5f9e;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s ease;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+/* ================= CARTA MUY GRANDE ================= */
+.letter {
+    position: absolute;
+    bottom: -720px;
+    left: -280px;
+    width: 900px;
+    height: 650px;
+    background: white;
+    border-radius: 24px;
+    padding: 50px 70px;
+    box-sizing: border-box;
+    opacity: 0;
+    overflow-y: auto;
+    transition: 1.3s ease;
+}
+
+.letter::-webkit-scrollbar {
+    width: 6px;
+}
+.letter::-webkit-scrollbar-thumb {
+    background: #ff9bc3;
+    border-radius: 4px;
+}
+
+.envelope.open .letter {
+    opacity: 1;
+    transform: translateY(-700px);
+}
+
+.letter h1 {
+    color: #ff4f88;
+    font-size: 42px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.letter p {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+/* ================= FUEGOS ARTIFICIALES ================= */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.8s ease-out infinite;
+}
+
+@keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(7); opacity: 0; }
+}
+
+/* ================= CONFETI ================= */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 14px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(120vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="letter">
+        <h1>💖 Para Ti 💖</h1>
+        <p>
+Mi princesa de mi vida🤍✨ te felicito en silencio, pero con amor como siempre, por cada meta que alcanzas, por cada paso que das aunque te tiemble el corazón como a mi, viniste para cumplir sueños, y yo lo se, incluso cuando amarte significaba aceptar que quizá no era un destino, sino un descanso en tu camino, para ayudarte cuando más lo necesitaste.
+
+Como tú has dicho, viniste para conseguir metas. Yo seré un recuerdo, si Dios quiere, y no uno cualquiera, sino uno que apareció sin avisar, pero que te suelta sin que haga ruido, pero que se sienta cada día, en cada acto hacia ti en este tiempo. Y mientras sigas aquí, hasta el día en que te vayas, te haré sonreír sin importar nada, aunque por dentro tenga que aprender a despedirme poco a poco.
+
+Recuerda lo mucho que te hice sentir. El amor que no pedía nada a cambio. Los detalles que hablaban cuando las palabras no bastaban. La forma en que cuidé de ti, incluso en tus días más rotos, al igual que tu de mi. Las primeras veces de todo… esas que no se repiten, esas que no se olvidan, aunque el tiempo intente convencerte de lo contrario.
+
+Gracias por dejarme quedarme en tu vida el tiempo que fue. Gracias por hacerme sentir hogar, aunque no fuera para siempre. Estoy agradecido por cada risa, por cada lágrima compartida, por cada instante en el que fuimos el amor de verdad que estábamos esperando.
+
+Si algún día miras atrás, no busques promesas vacías, busca sentimientos, te mereces mas de lo que yo te he intentado dar. Porque ahí estuve yo, amándote sin medida, sin condiciones, sin miedo a perder, aun sabiendo que podía pasar.
+
+Si tengo que soltarte, lo haré con amor.
+Si tengo que quedarme en tu recuerdo, lo haré feliz y agradecido.
+Porque lo que fue real, no se rompe… se transforma.
+
+Siempre tuyo, incluso en la distancia  
+🤍✨Tu príncipe que te hizo un pequeño castillo lleno de amor y que lo hará en cualquiera de las vidas que me dejes hacerlo
+        </p>
+    </div>
+</div>
+
+<script>
+/* ===== ESTRELLAS FIJAS ===== */
+for (let i = 0; i < 80; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    document.body.appendChild(star);
+}
+
+/* ===== FUEGOS ARTIFICIALES CONTINUOS ===== */
+setInterval(() => {
+    for (let i = 0; i < 8; i++) {
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.background = `hsl(${Math.random() * 360},100%,70%)`;
+        fw.style.top = Math.random() * 100 + "%";
+        fw.style.left = Math.random() * 100 + "%";
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1800);
+    }
+}, 900);
+
+/* ===== CONFETI POTENTE ===== */
+function launchConfetti() {
+    for (let i = 0; i < 180; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.background = `hsl(${Math.random() * 360},100%,60%)`;
+        c.style.left = Math.random() * 100 + "%";
+        c.style.top = "-20px";
+        c.style.animationDuration = (2 + Math.random() * 2) + "s";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+    }
+}
+
+/* ===== ABRIR SOBRE ===== */
+let opened = false;
+function openEnvelope() {
+    if (opened) return;
+    opened = true;
+    document.querySelector('.envelope').classList.add('open');
+    launchConfetti();
+}
+</script>
+
+</body>
+</html>
